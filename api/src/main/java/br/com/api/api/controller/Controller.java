@@ -21,7 +21,7 @@ public class Controller {
 
     @Autowired
     private Repositor acao;
-
+//metodos de rotas
     @PostMapping("/api")
     public Pessoa Cadastrar(@RequestBody Pessoa obj){
         return acao.save(obj);
