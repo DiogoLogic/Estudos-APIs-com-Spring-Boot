@@ -3,6 +3,9 @@ package br.com.api.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.api.api.model.Pessoa;
@@ -116,5 +119,12 @@ public class Controller {
     @PostMapping("/pessoa")
     public Pessoa pessoa(@RequestBody Pessoa p){
         return p;
+    }
+
+
+    //Informa o status da api
+    @GetMapping("/status")
+    public ResponseEntity<?> status(){
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
