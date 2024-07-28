@@ -3,102 +3,110 @@ package br.com.api.api.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.api.api.model.Pessoa;
 import br.com.api.api.repository.Repositor;
 
-
-
 @RestController
+@RequestMapping("/api")
 public class Controller {
 
     @Autowired
     private Repositor acao;
 
-    
-//metodos de rotas
-    @PostMapping("/api")
-    public Pessoa Cadastrar(@RequestBody Pessoa obj){
+    // Método para cadastrar uma nova pessoa
+    @PostMapping
+    public Pessoa cadastrar(@RequestBody Pessoa obj){
         return acao.save(obj);
     }
 
-    @GetMapping("/api")
+    // Método para obter todas as pessoas
+    @GetMapping
     public List<Pessoa> selecionar(){
         return acao.findAll();
     }
 
-    @GetMapping("/api/{codigo}")
+    // Método para obter uma pessoa pelo código
+    @GetMapping("/{codigo}")
     public Pessoa selecionarPeloCodigo(@PathVariable Long codigo){
         return acao.findByCodigo(codigo);
     }
 
-    @PutMapping("/api")
-    public Pessoa Editar(@RequestBody Pessoa obj){
+    // Método para editar uma pessoa existente
+    @PutMapping
+    public Pessoa editar(@RequestBody Pessoa obj){
         return acao.save(obj);
     }
 
-    @DeleteMapping("/api/{codigo}")
-    public void  deletar(@PathVariable Long codigo){
-         Pessoa obj = selecionarPeloCodigo(codigo);
-         acao.delete(obj);
-        
+    // Método para deletar uma pessoa pelo código
+    @DeleteMapping("/{codigo}")
+    public void deletar(@PathVariable Long codigo){
+        Pessoa obj = selecionarPeloCodigo(codigo);
+        acao.delete(obj);
     }
 
-
-    @GetMapping("/api/contador")
+    // Método para contar o número de pessoas
+    @GetMapping("/contador")
     public Long contador(){
         return acao.count();
     }
 
-    
-    @GetMapping("/api/ordenarNomes")
+    // Método para obter pessoas ordenadas pelo nome em ordem ascendente
+    @GetMapping("/ordenarNomes")
     public List<Pessoa> ordenarNomes(){
         return acao.findByOrderByNomeAsc();
     }
 
-    @GetMapping("/api/ordenarNome2")
+    // Método para obter pessoas com um nome específico ordenadas pela idade em ordem descendente
+    @GetMapping("/ordenarNome2")
     public List<Pessoa> ordenarNomes2(){
         return acao.findByNomeOrderByIdadeDesc("Diogo");
     }
 
-    @GetMapping("/api/nomeContem")
+    // Método para obter pessoas cujo nome contém um caractere específico
+    @GetMapping("/nomeContem")
     public List<Pessoa> nomeContem(){
         return acao.findByNomeContaining("D");
-      
     }
 
-    @GetMapping("/api/iniciaCom")
+    // Método para obter pessoas cujo nome inicia com um caractere específico
+    @GetMapping("/iniciaCom")
     public List<Pessoa> iniciaCom(){
         return acao.findByNomeStartingWith("a");
     }
 
-    @GetMapping("/api/terminaCom")
+    // Método para obter pessoas cujo nome termina com um caractere específico
+    @GetMapping("/terminaCom")
     public List<Pessoa> terminaCom(){
         return acao.findByNomeEndingWith("A");
     }
 
-    @GetMapping("")
+    // Método para somar as idades de todas as pessoas
+    @GetMapping("/somaIdades")
+    public int somaIdades(){
+        return acao.somaIdades();
+    }
+
+    // Método para retornar uma mensagem "Hello World"
+    @GetMapping("/")
     public String mensagem(){
         return "Hello World";
     }
 
-    @GetMapping("boasVindas")
+    // Método para retornar uma mensagem de boas-vindas
+    @GetMapping("/boasVindas")
     public String boasVindas(){
-        return "Seja bem vindo " ;
+        return "Seja bem vindo";
     }
 
-    @GetMapping("boasVindas/{nome}") 
-    public String boasVindas(@PathVariable String nome){ // receber um parametro via navegador
+    // Método para retornar uma mensagem de boas-vindas personalizada
+    @GetMapping("/boasVindas/{nome}") 
+    public String boasVindas(@PathVariable String nome){
         return "Seja bem vindo " + nome;
     }
 
+    // Método para retornar a pessoa recebida no corpo da requisição
     @PostMapping("/pessoa")
     public Pessoa pessoa(@RequestBody Pessoa p){
         return p;
