@@ -21,6 +21,8 @@ public class Controller {
 
     @Autowired
     private Repositor acao;
+
+    
 //metodos de rotas
     @PostMapping("/api")
     public Pessoa Cadastrar(@RequestBody Pessoa obj){
@@ -49,19 +51,37 @@ public class Controller {
         
     }
 
-    @GetMapping("/api/ordenarNomes")
-    public List<Pessoa> ordenarNomes(){
-        return acao.findByOrderByNomeAsc();
-    }
 
     @GetMapping("/api/contador")
     public Long contador(){
         return acao.count();
     }
 
+    
     @GetMapping("/api/ordenarNomes")
+    public List<Pessoa> ordenarNomes(){
+        return acao.findByOrderByNomeAsc();
+    }
+
+    @GetMapping("/api/ordenarNome2")
     public List<Pessoa> ordenarNomes2(){
-        return acao.findByNomeOrderByidadeDesc();
+        return acao.findByNomeOrderByIdadeDesc("Diogo");
+    }
+
+    @GetMapping("/api/nomeContem")
+    public List<Pessoa> nomeContem(){
+        return acao.findByNomeContaining("D");
+      
+    }
+
+    @GetMapping("/api/iniciaCom")
+    public List<Pessoa> iniciaCom(){
+        return acao.findByNomeStartingWith("a");
+    }
+
+    @GetMapping("/api/terminaCom")
+    public List<Pessoa> terminaCom(){
+        return acao.findByNomeEndingWith("A");
     }
 
     @GetMapping("")

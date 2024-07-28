@@ -19,6 +19,12 @@ public interface Repositor extends CrudRepository<Pessoa, Long>{
 
    List<Pessoa> findByOrderByNomeAsc();
 
-   List<Pessoa> findByNomeOrderByidadeDesc();
+   List<Pessoa> findByNomeOrderByIdadeDesc(String nome);
+
+   List<Pessoa> findByNomeContaining(String termo);
+
+   List<Pessoa> findByNomeStartingWith(String termo);
+
+   List<Pessoa> findByNomeEndingWith(String Termo);
 
 }
