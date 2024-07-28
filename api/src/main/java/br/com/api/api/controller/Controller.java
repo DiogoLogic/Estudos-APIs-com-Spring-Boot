@@ -88,8 +88,14 @@ public class Controller {
         return acao.somaIdades();
     }
 
+    // Método para trazer as idades que seja maior ou igual a idade informada por patametro
+    @GetMapping("/idadeMaiorIgual")
+    public List<Pessoa> idadeMaiorIgual(){
+        return acao.idadeMaiorIgual(30);
+    }
+
     // Método para retornar uma mensagem "Hello World"
-    @GetMapping("/")
+    @GetMapping("/hello")
     public String mensagem(){
         return "Hello World";
     }
