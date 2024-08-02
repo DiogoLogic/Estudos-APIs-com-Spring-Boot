@@ -1,15 +1,17 @@
 package br.com.api.api.controller;
 
+import java.security.Provider.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.com.api.api.model.Pessoa;
 import br.com.api.api.repository.Repositor;
+import br.com.api.api.service.Servico;
 
 @RestController
 @RequestMapping("/api")
@@ -18,10 +20,12 @@ public class Controller {
     @Autowired
     private Repositor acao;
 
+    @Autowired
+    private Servico servico;
     // Método para cadastrar uma nova pessoa
     @PostMapping
-    public Pessoa cadastrar(@RequestBody Pessoa obj){
-        return acao.save(obj);
+    public ResponseEntity<?> cadastrar(@RequestBody Pessoa obj){
+        return servico.cadastrar(obj);
     }
 
     // Método para obter todas as pessoas
