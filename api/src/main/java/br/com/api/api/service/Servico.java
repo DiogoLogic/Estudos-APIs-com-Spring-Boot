@@ -1,8 +1,6 @@
 package br.com.api.api.service;
 
-import org.apache.catalina.connector.Response;
-import org.apache.catalina.startup.ClassLoaderFactory.Repository;
-import org.postgresql.translation.messages_bg;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +19,8 @@ public class Servico {
     @Autowired
     private Repositor acao;
 
+
+    //validação de cadastro 
     public ResponseEntity<?> cadastrar(Pessoa obj){
         
         if(obj.getNome().equals("")){

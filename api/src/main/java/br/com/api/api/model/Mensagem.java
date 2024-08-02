@@ -5,23 +5,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class Mensagem {
 
-    private String Mensagem;
+    private String mensagem;
 
-    public Mensagem(String mensagem) {
-        this.Mensagem = mensagem;
-    }
 
     public String getMensagem() {
-        return Mensagem;
+        return mensagem;
     }
 
     public void setMensagem(String mensagem) {
-        Mensagem = mensagem;
+        this.mensagem = mensagem;
     }
 
     @Override
     public String toString() {
-        return "Mensagem [Mensagem=" + Mensagem + "]";
+        return "Mensagem [Mensagem=" + mensagem + "]";
     }
 
 }
