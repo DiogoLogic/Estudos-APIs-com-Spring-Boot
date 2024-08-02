@@ -20,7 +20,7 @@ public class Servico {
     private Repositor acao;
 
 
-    //validação de cadastro 
+    //validação de cadastro de pessoas
     public ResponseEntity<?> cadastrar(Pessoa obj){
         
         if(obj.getNome().equals("")){
@@ -34,4 +34,22 @@ public class Servico {
             return new ResponseEntity<>( acao.save(obj), HttpStatus.CREATED);
         }
     }
+    //metodo para selecionar pessoas
+    public ResponseEntity<?> selecionar(){
+        return new ResponseEntity<>(acao.findAll(), HttpStatus.OK);
+
+    }
+
+    //metodo para selecionar por codigo
+    public ResponseEntity<?> selecionarPeloCodigo(Long codigo){
+        if(acao.countByCodigo(codigo)==0){
+            mensagem.setMensagem("Não foi encontrada nem uma pessoa");
+            return new ResponseEntity<>(mensagem, HttpStatus.BAD_REQUEST);
+        }else{
+            return new ResponseEntity<>(acao.findByCodigo(codigo), HttpStatus.OK);
+        }
+        
+    }
+
+   
 }

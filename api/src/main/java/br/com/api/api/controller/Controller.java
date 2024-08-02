@@ -30,14 +30,14 @@ public class Controller {
 
     // Método para obter todas as pessoas
     @GetMapping
-    public List<Pessoa> selecionar(){
-        return acao.findAll();
+    public ResponseEntity<?> selecionar(){
+        return servico.selecionar();
     }
 
     // Método para obter uma pessoa pelo código
     @GetMapping("/{codigo}")
-    public Pessoa selecionarPeloCodigo(@PathVariable Long codigo){
-        return acao.findByCodigo(codigo);
+    public ResponseEntity<?>elecionarPeloCodigo(@PathVariable Long codigo){
+        return servico.selecionarPeloCodigo(codigo);
     }
 
     // Método para editar uma pessoa existente
@@ -47,11 +47,11 @@ public class Controller {
     }
 
     // Método para deletar uma pessoa pelo código
-    @DeleteMapping("/{codigo}")
-    public void deletar(@PathVariable Long codigo){
-        Pessoa obj = selecionarPeloCodigo(codigo);
-        acao.delete(obj);
-    }
+   // @DeleteMapping("/{codigo}")
+   // public void ResponseEntity<?>deletar(@PathVariable Long codigo){
+        //Pessoa obj = selecionarPeloCodigo(codigo);
+        //servico.de
+    
 
     // Método para contar o número de pessoas
     @GetMapping("/contador")
