@@ -9,9 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.api.api.model.Cliente;
 import br.com.api.api.model.Pessoa;
 import br.com.api.api.repository.Repositor;
 import br.com.api.api.service.Servico;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api")
@@ -130,5 +132,10 @@ public class Controller {
     @GetMapping("/status")
     public ResponseEntity<?> status(){
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/cliente")
+    public void cliente(@Valid @RequestBody Cliente obj){
+        
     }
 }
